@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Забт кун!</title>
+<style>
+body {
+  background: #101827;
+  color: white;
+  text-align: center;
+  font-family: Arial;
+  padding-top: 35px;
+}
+h1 { color: #45e0a8; }
+#score { font-size: 35px; }
+#target {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background: #ffcc33;
+  border: none;
+  margin-top: 45px;
+  font-size: 25px;
+}
+button {
+  padding: 14px 25px;
+  border-radius: 12px;
+  font-size: 18px;
+}
+</style>
+</head>
+<body>
+<h1>🎮 ЗАБТ КУН!</h1>
+<link rel="manifest" href="manifest.json"><p>Дар 30 сония ҳарчи бештар доираро зер кун!</p>
+<div id="score">Хол: 0</div>
+<p id="time">Вақт: 30</p>
+<button onclick="startGame()">ОҒОЗ</button>
+<br>
+<button id="target" onclick="hit()">🎯</button>
+<script>
+let score = 0;
+let time = 30;
+let playing = false;
+let timer;
+
+function startGame() {
+  score = 0;
+  time = 30;
+  playing = true;
+  document.getElementById("score").innerText = "Хол: 0";
+  document.getElementById("time").innerText = "Вақт: 30";
+  clearInterval(timer);
+  timer = setInterval(function() {
+    time--;
+    document.getElementById("time").innerText = "Вақт: " + time;
+    if (time <= 0) {
+      clearInterval(timer);
+      playing = false;
+      alert("Бозӣ тамом! Холи ту: " + score);
+    }
+  }, 1000);
+}
+
+function hit() {
+  if (!playing) return;
+  score++;
+  document.getElementById("score").innerText = "Хол: " + score;
+}
+</script>
+</body>
+</html>
